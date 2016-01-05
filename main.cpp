@@ -64,7 +64,7 @@ template <typename T1, typename T2>
 void SizeTest(unsigned int size, Map<T1, T2>& map);
 
 
-int main()
+int main2()
 {	//Test the TreeMap implementation
 	TreeMap<long, long double> tmmap;
 	try
@@ -152,7 +152,7 @@ void FindTest(unsigned int size, Map<T1, T2>& map)
 
 void InitializeValues()
 {
-	srand((unsigned int) time(nullptr));
+	srand((unsigned int) time(NULL));
 	ArrayList<int> al(MAP_SIZE);
 	for(int i = 0; i < MAP_SIZE; ++i)
 		al.Add(i);

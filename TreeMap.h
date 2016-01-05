@@ -10,7 +10,9 @@
  */
 template <typename T1, typename T2>
 class TreeMap : public Map<T1, T2>
-{
+{	//Typedef to access Map's KeyValue pair
+	//Necessary only in g++
+	typedef typename Map<T1, T2>::KeyValue KeyValue;
 public:
 
 	/**
@@ -28,7 +30,7 @@ public:
 		catch(int error)
 		{	//Check the exception error code
 			if(error == bst.ELE_DNE)
-				throw ELE_DNE;
+				throw this->ELE_DNE;
 		}
 	}
 
@@ -41,23 +43,22 @@ public:
 	*/
 	T2& Find(const T1& k) const
 	{	//Attempt to find the element
-		KeyValue kv(k);
 		try
 		{
-			kv = bst.Find(kv);
+			return bst.Find(KeyValue(k)).val;
 		}
 		catch(int error)
 		{	//Check the exception error code
 			if(error == bst.ELE_DNE)
-				throw ELE_DNE;
+				throw this->ELE_DNE;
 		}
-		return kv.val;
+		throw this->ELE_DNE;
 	}
 
 	//Overloaded assignment operator
 	TreeMap& operator=(const TreeMap& tm)
 	{	//Self-assignment check already handled by BST
-		bst = tmp.bst;
+		bst = tm.bst;
 		return *this;
 	}
 

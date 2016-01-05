@@ -8,14 +8,14 @@ public:
 	//Default constructor
 	BinarySearchTree() 
 	{ 
-		root = nullptr;
+		root = NULL;
 		n = 0;
 	}
 
 	//Copy constructor
 	BinarySearchTree(const BinarySearchTree& bst)
 	{
-		root = nullptr;
+		root = NULL;
 		n = 0;
 		Traverse(bst.root, &BinarySearchTree<T>::AddNode);
 	}
@@ -33,7 +33,7 @@ public:
 	T& Find(const T& val) const
 	{ 	//Use private member function find
 		Node* ret = Find(&root, val);
-		if(ret == nullptr)
+		if(ret == NULL)
 			throw ELE_DNE;
 		return ret->val;
 	}	
@@ -60,6 +60,7 @@ public:
 			return *this;
 		Destroy();
 		Traverse(bst.root, &BinarySearchTree<T>::AddNode);
+		return *this;
 	}
 	
 	/**
@@ -87,8 +88,8 @@ private:
 	class Node
 	{
 	public:
-		Node() { right = left = nullptr; }
-		Node(const T& v) { right = left = nullptr; val = v; }
+		Node() { right = left = NULL; }
+		Node(const T& v) { right = left = NULL; val = v; }
 		Node* right;
 		Node* left;
 		T val;
@@ -101,7 +102,7 @@ private:
 	void Destroy()
 	{
 		Traverse(root, &BinarySearchTree<T>::DestroyNode); 
-		root = nullptr;
+		root = NULL;
 		n = 0;
 	}
 
@@ -118,7 +119,7 @@ private:
 	 */
 	void AddNode(Node* ptr)
 	{
-		if(ptr != nullptr)
+		if(ptr != NULL)
 			Insert(ptr->val);
 	}
 
@@ -132,10 +133,10 @@ private:
 	{	//Find the node; remove const qualifier
 		Node*& node = const_cast<Node*&>(Find(&ptr, val));
 		//If node is null the value to remove dne
-		if(node == nullptr)
+		if(node == NULL)
 			throw ELE_DNE;
 		//At the node to remove
-		Node* tempPtr = nullptr;
+		Node* tempPtr = NULL;
 		//Node has two subtrees
 		if(node->left && node->right)
 		{	//Find the min value in the right subtree
@@ -162,7 +163,7 @@ private:
 		else
 		{
 			delete node;
-			node = nullptr;
+			node = NULL;
 		}
 	}
 

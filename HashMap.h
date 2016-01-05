@@ -2,13 +2,16 @@
 #define HASHMAP_H
 #include <cstdlib>
 typedef unsigned int Index;
+
 /**
  * A map implementation that uses a  hash table
  * with a multiplicative hash function internally. 
  */
 template <typename T1, typename T2>
 class HashMap : public Map<T1, T2>
-{
+{	//Typedef to access Map's KeyValue pair
+	//Necessary only in g++
+	typedef typename Map<T1, T2>::KeyValue KeyValue;
 public:	
 	/**
 	* Attempts to erase the (key, value) pair
@@ -23,7 +26,7 @@ public:
 		while(true)
 		{	//Loop until key is found
 			if(arr[j].open) //Opening found; key d.n.e.
-				throw ELE_DNE;
+				throw this->ELE_DNE;
 			else if(arr[j].key == k)
 			{//Found it
 				arr[j].open = true;
@@ -32,7 +35,7 @@ public:
 			}
 			j = (j + 1) % max;
 			if(j == i)	//Check to see if all values searched
-				throw ELE_DNE;
+				throw this->ELE_DNE;
 		}
 	}
 
@@ -50,12 +53,12 @@ public:
 		while(true)
 		{	//Loop until open spot is found
 			if(arr[j].open) //Opening found; key d.n.e.
-				throw ELE_DNE;
+				throw this->ELE_DNE;
 			else if(arr[j].key == k)	//Found it
 				return arr[j].val;
 			j = (j + 1) % max;
 			if(j == i)	//Check to see if all values searched
-				throw ELE_DNE;
+				throw this->ELE_DNE;
 		}
 	}
 	
@@ -90,7 +93,7 @@ public:
 	//Copy constructor
 	HashMap(const HashMap& hm)
 	{
-		arr = nullptr;
+		arr = NULL;
 		Copy(hm);
 	}
 

@@ -9,7 +9,9 @@
  */
 template <typename T1, typename T2>
 class SearchTable : public Map<T1, T2>
-{
+{	//Typedef to access Map's KeyValue pair
+	//Necessary only in g++
+	typedef typename Map<T1, T2>::KeyValue KeyValue;
 public:	 
 	/**
 	* Attempts to erase the (key, value) pair
@@ -21,7 +23,7 @@ public:
 	{ 	//Attempt to find the element
 		int i;
 		if(!BinarySearch(k, i))
-			throw ELE_DNE;
+			throw this->ELE_DNE;
 		//Overwrite element
 		for(unsigned int j = i + 1; j < n; ++j)
 			arr[j - 1] = arr[j];
@@ -39,7 +41,7 @@ public:
 	{	//Attempt to find the element
 		int i;
 		if(!BinarySearch(k, i))
-			throw ELE_DNE;
+			throw this->ELE_DNE;
 		return arr[i].val;
 	}
 
@@ -62,7 +64,7 @@ public:
 		//Next, find where ele belongs in the array
 		int i;
 		if(BinarySearch(k, i))
-			throw DUP_ELE;
+			throw this->DUP_ELE;
 		//Shift elements to the right to make room
 		for(int j = (int) n; j > i; --j)
 			arr[j] = arr[j - 1];
@@ -82,7 +84,7 @@ public:
 	//Copy constructor 
 	SearchTable(const SearchTable& st)
 	{
-		arr = nullptr;
+		arr = NULL;
 		Copy(st);
 	}
 

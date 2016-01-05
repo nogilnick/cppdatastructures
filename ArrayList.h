@@ -26,7 +26,7 @@ public:
 	virtual void Add(const T& ele, Index i)
 	{	//If index is out of range; throw an exception
 		if(Size() <= i)
-			throw BAD_INDX;
+			throw this->BAD_INDX;
 		//Check if resize is necessary
 		if(n + 1 == max)
 			ResizeArr(max * 2);
@@ -100,7 +100,7 @@ public:
 	virtual T& Get(Index i) const
 	{	//If index is out of range; throw an exception
 		if(Size() <= i)
-			throw BAD_INDX;
+			throw this->BAD_INDX;
 		return arr[i];
 	}
 	
@@ -139,7 +139,7 @@ public:
 	virtual void Remove(Index i)
 	{	//If index is out of range; throw an exception
 		if(Size() <= i)
-			throw BAD_INDX;
+			throw this->BAD_INDX;
 		//Overwrite element
 		for(Index j = i + 1; j < Size(); ++j)
 			arr[j - 1] = arr[j];
@@ -154,7 +154,7 @@ public:
 	virtual void Set(Index i, const T& val)
 	{	//If index is out of range; throw an exception
 		if(Size() <= i)
-			throw BAD_INDX;
+			throw this->BAD_INDX;
 		arr[i] = val;
 	}
 
